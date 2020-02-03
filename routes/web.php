@@ -27,7 +27,7 @@ Route::post('/add-items-proses' , 'ItemController@add_proses')->name('add-proses
 
 //Member
 // Route::get('/dashboard' , 'AdminController@index');
-Route::get('/' , 'FrontController@index');
+Route::get('/' , 'FrontController@index')->name('/');
 Route::get('detail-product' , 'FrontController@detail')->name('detail-product');
 
 
