@@ -13,6 +13,10 @@
           <input type="text" name="name" class="form-control" id="email">
         </div>
         <div class="form-group">
+          <label for="email">Harga:</label>
+          <input type="text" name="price" class="form-control" id="price">
+        </div>
+        <div class="form-group">
           <label for="email">Keterangan:</label>
           <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="keterangan"></textarea>
         </div>

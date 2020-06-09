@@ -8,8 +8,8 @@ use App\Items;
 class ItemController extends Controller
 {
     public function index(){
-
-    	return view('admin.items.index');
+        $item = Items::orderBy('created_at', 'Desc' )->paginate(10);
+    	return view('admin.items.index', compact('item'));
     }
 
     public function add(){
@@ -19,14 +19,16 @@ class ItemController extends Controller
 
     public function add_proses(Request $request){
     	$this->validate($request, [
-    		'name'		=> 'required',
+            'name'      => 'required',
+    		'price'		=> 'required|integer',
     		'keterangan'=> 'required',
     		'image'		=> 'required|file|image|mimes:jpeg,png,jpg|max:2048',
     		'jumlah'	=> 'required'
     	]);
 
     	$item = new Items;
-    	$item->name 		= $request->name;
+        $item->name         = $request->name;
+    	$item->price 		= $request->price;
     	$item->description	= $request->keterangan;
 
     	if($request->hasFile('image')){
@@ -41,6 +43,6 @@ class ItemController extends Controller
     	// dd($item);
     	$item->save();
 
-    	return redirect('/dashboard', compact('item'));
+    	return redirect('/dashboard');
     }
 }
