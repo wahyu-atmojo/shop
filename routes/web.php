@@ -23,7 +23,15 @@
 // Route::get('/dashboard' , 'AdminController@index');
 Route::get('/dashboard' , 'ItemController@index');
 Route::get('/add-items' , 'ItemController@add')->name('add-items');
+Route::get('/edit-items/{id}' , 'ItemController@edit')->name('edit-items');
 Route::post('/add-items-proses' , 'ItemController@add_proses')->name('add-proses');
+Route::post('/edit-items-proses/{id}' , 'ItemController@edit_proses')->name('edit-proses');
+Route::get('/hapus-items/{id}' , 'ItemController@delete')->name('delete-items');
+Route::get('/add-stock/{id}' , 'ItemController@add_stock')->name('add-stock');
+Route::post('/add-stock/{id}' , 'ItemController@add_stock_proses')->name('add-stock-proses');
+Route::get('/produk-kosong' , 'ItemController@produk_kosong')->name('produk-kosong');
+Route::get('/produk-diskon' , 'ItemController@produk_diskon')->name('produk-diskon');
+
 
 //Member
 // Route::get('/dashboard' , 'AdminController@index');
