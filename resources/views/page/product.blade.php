@@ -13,7 +13,7 @@
 		@include('page.layouts.top-header')
 		<!-- End Search Popup -->
         <!-- Start Bradcaump area -->
-        <div class="ht__bradcaump__area bg-image--4">
+        <div class="ht__bradcaump__area bg-image--5">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">

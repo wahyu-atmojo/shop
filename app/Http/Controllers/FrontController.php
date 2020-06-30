@@ -21,4 +21,9 @@ class FrontController extends Controller
     public function contact(){
     	return view('page.contact');
     }
+
+    public function semua_product(){
+    	$item = Items::orderBy('created_at', 'Desc' )->paginate(9);
+    	return view('page.semua_product',  compact('item'));
+    }
 }

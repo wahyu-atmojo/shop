@@ -12,7 +12,7 @@
 						<nav class="mainmenu__nav">
 							<ul class="meninmenu d-flex justify-content-start">
 								<li class="drop with--one--item"><a href="{{ Route('/') }}">Home</a></li>
-								<li class="drop"><a href="#">Produk</a>
+								<li class="drop"><a href="{{ route('semua_produk') }}">Produk</a>
 									<!-- <div class="megamenu mega03">
 										<ul class="item item03">
 											<li class="title">Shop Layout</li>
