@@ -4,10 +4,10 @@
     		<div class="col-lg-12">
     			<div class="slider__content">
         			<div class="contentbox">
-        				<h2>Buy <span>your </span></h2>
-        				<h2>favourite <span>Book </span></h2>
-        				<h2>from <span>Here </span></h2>
-	                   	<a class="shopbtn" href="#">shop now</a>
+        				<h2>Produk <span>Meubel </span></h2>
+        				<h2>Kualitas <span>Terjamin </span></h2>
+        				<h2>Produk <span>Asli Jepara </span></h2>
+	                   	<!-- <a class="shopbtn" href="#">shop now</a> -->
         			</div>
     			</div>
     		</div>
@@ -22,10 +22,10 @@
     		<div class="col-lg-12">
     			<div class="slider__content">
         			<div class="contentbox">
-        				<h2>Buy <span>your </span></h2>
-        				<h2>favourite <span>Book </span></h2>
-        				<h2>from <span>Here </span></h2>
-	                   	<a class="shopbtn" href="#">shop now</a>
+        				<h2>Produk <span>Meubel </span></h2>
+                        <h2>Kualitas <span>Terjamin </span></h2>
+                        <h2>Produk <span>Asli Jepara </span></h2>
+                        <!-- <a class="shopbtn" href="#">shop now</a> -->
         			</div>
     			</div>
     		</div>

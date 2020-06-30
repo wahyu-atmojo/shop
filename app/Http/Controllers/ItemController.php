@@ -57,7 +57,7 @@ class ItemController extends Controller
     	// dd($item);
     	$item->save();
 
-    	return redirect('/dashboard');
+    	return redirect('/dashboard')->with(['success' => 'Produk Berhasil Ditambahkan']);
     }
 
     public function edit($id){

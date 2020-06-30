@@ -36,7 +36,8 @@ Route::get('/produk-diskon' , 'ItemController@produk_diskon')->name('produk-disk
 //Member
 // Route::get('/dashboard' , 'AdminController@index');
 Route::get('/' , 'FrontController@index')->name('/');
-Route::get('detail-product' , 'FrontController@detail')->name('detail-product');
+Route::get('detail-product/{id}' , 'FrontController@detail')->name('detail-product');
+Route::get('contact' , 'FrontController@contact')->name('contact');
 
 
 Auth::routes();

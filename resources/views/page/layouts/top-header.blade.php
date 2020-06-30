@@ -1,10 +1,10 @@
 <header id="wn__header" class="oth-page header__area header__absolute sticky__header">
 			<div class="container-fluid">
 				<div class="row">
-					<div class="col-md-4 col-sm-4 col-7 col-lg-2">
+					<div class="col-md-6 col-sm-6 col-6 col-lg-2">
 						<div class="logo">
 							<a href="{{ Route('/') }}">
-								<img src="images/logo/logo.png" alt="logo images">
+								<!-- <img src="images/logo/logo.png" alt="logo images"> -->UD. Tumbuh Jati
 							</a>
 						</div>
 					</div>
@@ -12,8 +12,8 @@
 						<nav class="mainmenu__nav">
 							<ul class="meninmenu d-flex justify-content-start">
 								<li class="drop with--one--item"><a href="{{ Route('/') }}">Home</a></li>
-								<li class="drop"><a href="#">Shop</a>
-									<div class="megamenu mega03">
+								<li class="drop"><a href="#">Produk</a>
+									<!-- <div class="megamenu mega03">
 										<ul class="item item03">
 											<li class="title">Shop Layout</li>
 											<li><a href="shop-grid.html">Shop Grid</a></li>
@@ -36,9 +36,9 @@
 											<li><a href="shop-grid.html">Books Under $5</a></li>
 											<li><a href="shop-grid.html">Bargain Books</a></li>
 										</ul>
-									</div>
+									</div> -->
 								</li>
-								<li class="drop"><a href="shop-grid.html">Books</a>
+								<!-- <li class="drop"><a href="shop-grid.html">Books</a>
 									<div class="megamenu mega03">
 										<ul class="item item03">
 											<li class="title">Categories</li>
@@ -113,8 +113,9 @@
 											<li><a href="blog-details.html">Blog Details</a></li>
 										</ul>
 									</div>
-								</li>
-								<li><a href="contact.html">Contact</a></li>
+								</li> -->
+								<li><a href="{{ route('contact') }}">Tentang Kami</a></li>
+								<!-- <li><a href="{{ route('contact') }}">Contact</a></li> -->
 							</ul>
 						</nav>
 					</div>

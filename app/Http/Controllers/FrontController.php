@@ -3,16 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Items;
 
 class FrontController extends Controller
 {
     public function index(){
-
-    	return view('index');
+    	$item = Items::orderBy('created_at', 'Desc' )->get();
+    	return view('index',  compact('item'));
     }
 
-    public function detail(){
+    public function detail($id){
+    	$detail = Items::findOrfail($id);
+    	$item = Items::orderBy('created_at', 'Desc' )->take(3)->get();
+    	return view('page.product', compact('detail', 'item'));
+    }
 
-    	return view('page.product');
+    public function contact(){
+    	return view('page.contact');
     }
 }
