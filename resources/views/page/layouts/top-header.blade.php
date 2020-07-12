@@ -123,9 +123,13 @@
 						<ul class="header__sidebar__right d-flex justify-content-end align-items-center">
 							<li class="shop_search"><a class="search__active" href="#"></a></li>
 							<li class="wishlist"><a href="#"></a></li>
-							<li class="shopcart"><a class="cartbox_active" href="#"><span class="product_qun">3</span></a>
+							<li class="shopcart"><img src="{{ asset('icons/cart.png') }}" onclick="document.location='{{ route('cart') }}'">
+								{{-- @if(session('$cart'))
+									<a  class="cartbox_active" ><span class="product_qun">1</span></a>
+								@endif --}}
+							
 								<!-- Start Shopping Cart -->
-								<div class="block-minicart minicart__active">
+								{{-- <div class="block-minicart minicart__active">
 									<div class="minicart-content-wrapper">
 										<div class="micart__close">
 											<span>close</span>
@@ -196,70 +200,33 @@
 											<a class="cart__btn" href="cart.html">View and edit cart</a>
 										</div>
 									</div>
-								</div>
+								</div> --}}
 								<!-- End Shopping Cart -->
 							</li>
-							<li class="setting__bar__icon"><a class="setting__active" href="#"></a>
+							<li class="setting__bar__icon"><img src="{{ asset('icons/icon_setting.png') }}" style="color: white"><a class="setting__active" href="#"></a>
 								<div class="searchbar__content setting__block">
 									<div class="content-inner">
 										<div class="switcher-currency">
 											<strong class="label switcher-label">
-												<span>Currency</span>
-											</strong>
-											<div class="switcher-options">
-												<div class="switcher-currency-trigger">
-													<span class="currency-trigger">USD - US Dollar</span>
-													<ul class="switcher-dropdown">
-														<li>GBP - British Pound Sterling</li>
-														<li>EUR - Euro</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-										<div class="switcher-currency">
-											<strong class="label switcher-label">
-												<span>Language</span>
-											</strong>
-											<div class="switcher-options">
-												<div class="switcher-currency-trigger">
-													<span class="currency-trigger">English01</span>
-													<ul class="switcher-dropdown">
-														<li>English02</li>
-														<li>English03</li>
-														<li>English04</li>
-														<li>English05</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-										<div class="switcher-currency">
-											<strong class="label switcher-label">
-												<span>Select Store</span>
-											</strong>
-											<div class="switcher-options">
-												<div class="switcher-currency-trigger">
-													<span class="currency-trigger">Fashion Store</span>
-													<ul class="switcher-dropdown">
-														<li>Furniture</li>
-														<li>Shoes</li>
-														<li>Speaker Store</li>
-														<li>Furniture</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-										<div class="switcher-currency">
-											<strong class="label switcher-label">
-												<span>My Account</span>
+
+												<span>{{ Auth::user()->name }}</span>
 											</strong>
 											<div class="switcher-options">
 												<div class="switcher-currency-trigger">
 													<div class="setting__menu">
-														<span><a href="#">Compare Product</a></span>
-														<span><a href="#">My Account</a></span>
-														<span><a href="#">My Wishlist</a></span>
-														<span><a href="#">Sign In</a></span>
-														<span><a href="#">Create An Account</a></span>
+														<!-- <span><a href="#">Compare Product</a></span> -->
+														<span><a href="#">Akun</a></span>
+														<span><a href="{{ route('my-cart') }}">Keranjangku</a></span>
+														@if(Auth::check())
+														<span><a href="{{ route('_logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></span>
+															<form id="logout-form" action="{{ route('_logout') }}" method="POST" style="display: none;">
+						                                        @csrf
+						                                    </form>
+														@else
+														<span><a href="#">Login</a></span>
+
+														<span><a href="#">Register</a></span>
+														@endif
 													</div>
 												</div>
 											</div>

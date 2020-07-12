@@ -24,7 +24,7 @@
 			  	@foreach($item as $i)
 			    <div class="col-md-4">
 			      <div class="thumbnail">
-			        <a href="{{ route('detail-product', $i->id) }}" target="_blank">
+			        <a href="{{ route('detail-product', $i->id) }}">
 			          <img src="{{ asset('produk/'.$i->image) }}" alt="Lights" style="width:100%">
 			          <div class="caption">
 			          	<div class="product product__style--3">

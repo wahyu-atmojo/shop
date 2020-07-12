@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Items;
+use Auth;
 
 class FrontController extends Controller
 {
     public function index(){
+        
     	$item = Items::orderBy('created_at', 'Desc' )->get();
     	return view('index',  compact('item'));
     }

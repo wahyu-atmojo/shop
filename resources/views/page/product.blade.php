@@ -13,6 +13,7 @@
 		@include('page.layouts.top-header')
 		<!-- End Search Popup -->
         <!-- Start Bradcaump area -->
+
         <div class="ht__bradcaump__area bg-image--5">
             <div class="container">
                 <div class="row">
@@ -29,6 +30,45 @@
                 </div>
             </div>
         </div>
+
+        <div style="margin-top: 10px;">
+        	<center>
+		         @if ($message = Session::get('success'))
+			      <div class="alert alert-success alert-block">
+			        <button type="button" class="close" data-dismiss="alert">×</button> 
+			          <strong>{{ $message }}</strong>
+			      </div>
+			    @endif
+
+			    @if ($message = Session::get('error'))
+			      <div class="alert alert-danger alert-block">
+			        <button type="button" class="close" data-dismiss="alert">×</button> 
+			        <strong>{{ $message }}</strong>
+			      </div>
+			    @endif
+
+			    @if ($message = Session::get('warning'))
+			      <div class="alert alert-warning alert-block">
+			        <button type="button" class="close" data-dismiss="alert">×</button> 
+			        <strong>{{ $message }}</strong>
+			    </div>
+			    @endif
+
+			    @if ($message = Session::get('info'))
+			      <div class="alert alert-info alert-block">
+			        <button type="button" class="close" data-dismiss="alert">×</button> 
+			        <strong>{{ $message }}</strong>
+			      </div>
+			    @endif
+
+			    @if ($errors->any())
+			      <div class="alert alert-danger">
+			        <button type="button" class="close" data-dismiss="alert">×</button> 
+			        Please check the form below for errors
+			    </div>
+			    @endif
+			</center>
+		</div>
         <!-- End Bradcaump area -->
         <!-- Start main Content -->
         <div class="maincontent bg--white pt--80 pb--55">
@@ -70,22 +110,33 @@
         									<p>{{ $detail->description }}</p>
         								</div>
         								<div class="box-tocart d-flex">
-        									<span>Qty</span>
-        									<input id="qty" class="input-text qty" name="qty" min="1" value="1" title="Qty" type="number">
-        									<div class="addtocart__actions">
-        										<button class="tocart" type="submit" title="Add to Cart">Add to Cart</button>
-        									</div>
-											<div class="product-addto-links clearfix">
+        									<form action="{{ route('add-to-cart') }}" method="POST">
+        										@csrf
+	        									<span>Satuan</span>
+	        									<input id="sst" class="input-text qty" name="qty" min="1" value="1" title="Qty" type="text">
+		        									<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;" class="increase items-count" type="button">
+												      <i class="fa fa-angle-up"></i>
+												    </button>
+												    <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
+												    class="reduced items-count" type="button">
+												      <i class="fa fa-angle-down"></i>
+												    </button>
+												<input type="hidden" name="product_id" value="{{ $detail->id }}" class="form-control">
+	        									<div class="addtocart__actions">
+	        										<button class="tocart" type="submit" title="Add to Cart">Tambah Ke Keranjang</button>
+	        									</div>
+	        								</form>
+											<!-- <div class="product-addto-links clearfix">
 												<a class="wishlist" href="#"></a>
 												<a class="compare" href="#"></a>
-											</div>
+											</div> -->
         								</div>
-										<div class="product_meta">
+										<!-- <div class="product_meta">
 											<span class="posted_in">Categories: 
 												<a href="#">Adventure</a>, 
 												<a href="#">Kids' Music</a>
 											</span>
-										</div>
+										</div> -->
 										<div class="product-share">
 											<ul>
 												<li class="categories-title">Share :</li>
