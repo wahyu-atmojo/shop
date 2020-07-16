@@ -209,25 +209,28 @@
 									<div class="content-inner">
 										<div class="switcher-currency">
 											<strong class="label switcher-label">
-												
+											@if(Auth::check())
 												<span>{{ Auth::user()->name  }}</span>
+											@else
+											@endif
 												
 											</strong>
 											<div class="switcher-options">
 												<div class="switcher-currency-trigger">
 													<div class="setting__menu">
 														<!-- <span><a href="#">Compare Product</a></span> -->
-														<span><a href="#">Akun</a></span>
-														<span><a href="{{ route('my-cart') }}">Keranjangku</a></span>
+														<span><a href="{{ route('setting-akun') }}">Pengaturan Akun</a></span>
+														<span><a href="{{ route('my-cart') }}">Produk yang belum terbayar</a></span>
+														<span><a href="{{ route('riwayat_belanja') }}">Riwayat Belanja</a></span>
 														@if(Auth::check())
 														<span><a href="c" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></span>
 															<form id="logout-form" action="{{ route('_logout') }}" method="POST" style="display: none;">
 						                                        @csrf
 						                                    </form>
 														@else
-														<span><a href="#">Login</a></span>
+														<span><a href="{{ route('_login') }}">Login</a></span>
 
-														<span><a href="#">Register</a></span>
+														<span><a href="{{ route('_register') }}">Register</a></span>
 														@endif
 													</div>
 												</div>

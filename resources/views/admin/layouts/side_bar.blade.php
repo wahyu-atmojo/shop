@@ -40,6 +40,19 @@
         </div>
       </li>
 
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Pembayaran</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="{{ route('list-payment') }}">Barang Sudah Terbayar</a>
+            <a class="collapse-item" href="{{ route('sudah-terkirim') }}">Produk yang Sudah Terkirim</a>
+          </div>
+        </div>
+      </li>
+
       <!-- Nav Item - Utilities Collapse Menu -->
       {{-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">

@@ -119,6 +119,25 @@
                         <div class="wrap-input100 validate-input m-b-12">
                             <input id="password-confirm" type="password" class="input100" name="password_confirmation" required>
                         </div>
+                        <div class="flex-sb-m w-full p-b-48">
+                            <div class="contact100-form-checkbox">
+                                <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                <label>
+                                    <a href="{{ route('_login') }}" class="txt3">
+                                        Login
+                                    </a>
+                                </label>
+                            </div>
+
+                            <div>
+                                @if (Route::has('password.request'))
+                                    <a href="{{ route('/') }}" class="txt3">
+                                       Home
+                                    </a>
+                                @endif
+
+                            </div>
+                        </div>
 
                         <div class="container-login100-form-btn">
                             <button class="login100-form-btn">

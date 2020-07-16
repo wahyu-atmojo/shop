@@ -55,7 +55,7 @@ class CheckoutController extends Controller
 	    	$transaksi->save();
 
 	    session::forget('cart');
-	    	\Mail::to($transaksi->user->email)->send(new TransactionMail($transaksi));
+	    	// \Mail::to($transaksi->user->email)->send(new TransactionMail($transaksi));
 	    	return redirect('/bukti-transfer')->with(['success' => 'Produk Berhasil Ditambahkan']);
 
     	
@@ -96,7 +96,7 @@ class CheckoutController extends Controller
     	$transaksi->status = 2;
     	// dd($transaksi);
     	$transaksi->save();
-    	\Mail::to($transaksi->user->email)->send(new TransactionMail($transaksi));
+    	// \Mail::to($transaksi->user->email)->send(new TransactionMail($transaksi));
 	    return redirect('/')->with(['success' => 'Terima Kasih sudah berbelanja di UD. Tumbuh Jati. Kami akan mengirimkan resi pengiriman lewat email']);
 
     }
@@ -104,9 +104,15 @@ class CheckoutController extends Controller
 
     public function mycart(){
     	$transaksi = Transaction::where('user_id', Auth::user()->id)->where('status', 1)->orderBy('created_at', 'DESC')->first();
-    	$cart = json_decode($transaksi->keterangan_produk, true);
-    	// dd($cart);
+        // dd($transaksi);
+        if($transaksi){
+        	$cart = json_decode($transaksi->keterangan_produk, true);
+        	// dd($cart);
 
-    	return view('page.my-cart', compact('transaksi', 'cart'));
+        	return view('page.my-cart', compact('transaksi', 'cart'));
+
+        }else{
+            return redirect()->back()->with('warning', 'Anda tidak punya pembelian yang belum terbayar');
+        }
     }
 }
