@@ -7,6 +7,7 @@ use App\Items;
 use Auth;
 use App\User;
 use App\Transaction;
+use App\Transaction_Detail;
 
 class FrontController extends Controller
 {
@@ -32,15 +33,12 @@ class FrontController extends Controller
     }
 
     public function riwayat_belanja(){
-        $riwayat = Transaction::where('user_id', Auth::user()->id)->where('status', 3)->orderBy('created_at', 'DESC')->first();
+        $riwayat = Transaction_Detail::where('user_id', Auth::user()->id)->where('status', 3)->orderBy('created_at', 'DESC')->get();
         // dd($riwayat);
-        if($riwayat){
-            $cart = json_decode($riwayat->keterangan_produk, true);
-            return view('page.riwayat-belanja', compact('riwayat', 'cart'));
-
-        }else{
-            return redirect()->back()->with('warning', 'Anda tidak punya riwayat belanja');
-        }
+        
+        
+        return view('page.riwayat-belanja', compact('riwayat', 'resi'));
+       
     }
 
     public function akun(){

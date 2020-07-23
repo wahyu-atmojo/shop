@@ -36,8 +36,8 @@
           @foreach($transaksi as $i)
           <tr>
             <th>{{ $no++ }}</th>
-            <th>{{ $i->user->name }}</th>
-            <th>{{ $i->user->alamat }}</th>
+            <th>{{ $i->user_transaction['name'] }}</th>
+            <th>{{ $i->user_transaction['alamat'] }}</th>
             <th>{{ $i->kode_transaksi }}</th>
             <th>{{ $i->created_at }}</th>
             <th>
@@ -62,7 +62,7 @@
           <h4 class="modal-title">Masukkan Nomor Resi</h4>
         </div>
         <div class="modal-body">
-          <form action="{{ route('add-resi', $i->id) }}" method="POST">
+          <form action="{{ route('add-resi', $i->kode_transaksi) }}" method="POST">
             {{ csrf_field() }}
             <div class="form-group">
               <label for="resi">No Resi:</label>

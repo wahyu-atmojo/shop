@@ -243,6 +243,9 @@
 						        </div>
 						        <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
 					            	<div class="payment-body">Lakukan pembayaran Anda langsung ke rekening bank kami. Pesanan Anda tidak akan dikirim sampai dana telah dikirim ke rekening kami.</div>
+					            	<div class="payment-body">Rekening : 0502391617 </div>
+					            	<div class="payment-body">Nama : Zakhiya </div>
+					            	<div class="payment-body">Bank : BNI</div>
 						        </div>
 						    </div>
 						    {{-- <div class="payment">
@@ -268,7 +271,7 @@
 						    <div class="payment">
 						        <div class="che__header" role="tab" id="headingFour">
 						          	<a class="collapsed checkout__title" data-toggle="collapse" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-							            <span><img src="{{ asset('icons/bri.png') }}" style="width: 100px; height: 100px" alt="payment images"> </span>
+							            <span><img src="{{ asset('icons/bni.png') }}" style="width: 100px; height: 50px" alt="payment images"> </span>
 						          	</a>
 						        </div>
 						        {{-- <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFour" data-parent="#accordion">

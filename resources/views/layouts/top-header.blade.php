@@ -219,10 +219,10 @@
 												<div class="switcher-currency-trigger">
 													<div class="setting__menu">
 														<!-- <span><a href="#">Compare Product</a></span> -->
+														@if(Auth::check())
 														<span><a href="{{ route('setting-akun') }}">Pengaturan Akun</a></span>
 														<span><a href="{{ route('my-cart') }}">Produk yang belum terbayar</a></span>
 														<span><a href="{{ route('riwayat_belanja') }}">Riwayat Belanja</a></span>
-														@if(Auth::check())
 														<span><a href="c" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></span>
 															<form id="logout-form" action="{{ route('_logout') }}" method="POST" style="display: none;">
 						                                        @csrf

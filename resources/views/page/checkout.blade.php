@@ -291,7 +291,7 @@
 						    <div class="payment">
 						        <div class="che__header" role="tab" id="headingFour">
 						          	<a class="collapsed checkout__title" data-toggle="collapse" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-							            <span><img src="{{ asset('icons/bri.png') }}" style="width: 100px; height: 100px" alt="payment images"> </span>
+							            <span><img src="{{ asset('icons/bni.png') }}" style="width: 100px; height: 50px" alt="payment images"> </span>
 						          	</a>
 						        </div>
 						        {{-- <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFour" data-parent="#accordion">

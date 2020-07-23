@@ -99,23 +99,38 @@
                                             <th class="product-price">Price</th>
                                             <th class="product-quantity">Satuan</th>
                                             <th class="product-subtotal">Total</th>
+
                                         </tr>
                                     </thead>
                                     <tbody>
 		                                        <tr>
 		                                        	
 		                                           
-			                                    	@if($cart)
-			            								@foreach($cart as $id => $details)
-			            								<tr>
-					                                            <td class="product-thumbnail"><img src="{{ asset('produk/'.$details['photo']) }}" alt="product img"></td>
-					                                            <td class="product-name"><a href="#">{{ $details['name'] }}</a></td>
-					                                            <td class="product-price"><span class="amount">{{ $details['price'] }}</span></td>
-					                                            <td class="product-quantity">{{ $details['quantity'] }}</td>
-					                                            <td class="product-subtotal">{{ $details['quantity'] * $details['price'] }}</td>
-					                                    </tr>
+			                                    	
+			            								@foreach($riwayat as $details)
+			            									@if(!$details['no_resi'])
+					                                            <td class="product-name" style="background-color: #f98989"><a href="#">Nomor Resi : Nomor Resi Belum Dikirim</a><br>
+					                                            Kode Transaksi : {{ $details['kode_transaksi'] }}</td>
+
+					                                        @else
+					                                            <td class="product-name"><a href="#">Nomor Resi : {{ $details['no_resi'] }}</a><br>
+					                                            Kode Transaksi : {{ $details['kode_transaksi'] }}</td>
+					                                        @endif
+					            									@foreach($details->trans as $t)
+					            								<tr>
+
+							                                            <td class="product-name"><img src="{{ asset('produk/'. $t->image_produk ) }}" alt="product img"></td>
+							                                            <td class="product-name"><a href="#">{{ $t['keterangan_produk'] }}</a></td>
+							                                            <td class="product-name"><a href="#">{{ $t['subtotal'] }}</a></td>
+							                                            <td class="product-name"><a href="#">{{ $t['quantity'] }}</a></td>
+							                                            <td class="product-name"><a href="#">{{ $t['subtotal'] * $t['quantity'] }}</a></td>
+
+							                                    </tr>
+							                                        @endforeach
+
 					                                    @endforeach
-					                                @endif
+					                                            
+					                                
 		                                        
 		                                        </tr>
                                     </tbody>

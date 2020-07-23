@@ -1,6 +1,7 @@
 /node_modules
 /public/main/images
 /public/hot
+/public/bukti_transfer
 /public/produk
 /public/storage
 /storage/*.key

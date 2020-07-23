@@ -100,25 +100,23 @@
                                             <th class="product-price">Price</th>
                                             <th class="product-quantity">Satuan</th>
                                             <th class="product-subtotal">Total</th>
-                                            <th class="product-remove">Remove</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-		                                        <tr>
-		                                        	
-		                                            <td class="product-name"><a href="#">{{ $transaksi->kode_transaksi }}</a></td>
-		                                           
-			                                    	@if($cart)
-			            								@foreach($cart as $id => $details)
-					                                            <td class="product-thumbnail"><img src="{{ asset('produk/'.$details['photo']) }}" alt="product img"></td>
-					                                            <td class="product-name"><a href="#">{{ $details['name'] }}</a></td>
-					                                            <td class="product-price"><span class="amount">{{ $details['price'] }}</span></td>
-					                                            <td class="product-quantity">{{ $details['quantity'] }}</td>
-					                                            <td class="product-subtotal">{{ $details['quantity'] * $details['price'] }}</td>
-					                                            <td class="product-remove"><a href="{{ route('del-cart', $details['id']) }}">X</a></td>
-					                                    @endforeach
-					                                @endif
-		                                        </tr>
+                                    	{{-- {{dd($transaksi)}} --}}
+			            				@foreach($transaksi as $id => $details)
+                                    	{{-- {{dd($details['subtotal'])}} --}}
+	                                        <tr>
+
+                                    			<td class="product-name"><a href="#">{{ $details['kode_transaksi'] }}</a></td>
+	                                            <td class="product-thumbnail"><img src="{{ asset('produk/'.$details['image_produk']) }}" alt="product img"></td>
+	                                            <td class="product-name"><a href="#">{{ $details['keterangan_produk'] }}</a></td>
+	                                            <td class="product-price"><span class="amount">{{ $details['subtotal'] }}</span></td>
+	                                            <td class="product-quantity">{{ $details['quantity'] }}</td>
+	                                            <td class="product-subtotal">{{ $details['quantity'] * $details['subtotal'] }}</td>
+				                               
+	                                        </tr>
+					                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -133,6 +131,7 @@
                         </div>
                     </div>
                 </div>
+                
                 <div class="row">
                     <div class="col-lg-6 offset-lg-6">
                         <div class="cartbox__total__area">
@@ -142,13 +141,13 @@
                                     <li>Sub Total</li>
                                 </ul>
                                 <ul class="cart__total__tk">
-                                    <li>Rp. {{$transaksi->subtotal}}</li>
-                                    <li>Rp. {{$transaksi->subtotal}}</li>
+                                    <li>{{ $total }} Produk</li>
+                                    <li>Rp. {{ $subtotal }}</li>
                                 </ul>
                             </div>
                             <div class="cart__total__amount">
                                 <span>Total</span>
-                                <span>Rp. {{$transaksi->subtotal}}</span>
+                                <span>Rp. {{ $subtotal }}</span>
                             </div>
                         </div>
                         <div class="cartbox__total__area">
@@ -162,6 +161,7 @@
 						</div>
                     </div>
                 </div>
+                
             </div>  
         </div>
         <!-- cart-main-area end -->
