@@ -15,7 +15,7 @@ class Transaction_Detail extends Model
 	// protected $fillable = ['user_id', 'kode_transaksi', 'keterangan_produk', 'total_quantity', 'total_harga', 'pengiriman', 'harga_pengiriman', 'bukti_transfer', 'no_resi', 'status'];
 
     public function user_transaction(){
-    	return $this->belongsTo('App\USer', 'user_id');
+    	return $this->belongsTo('App\User', 'user_id');
     }
 
     public function trans(){

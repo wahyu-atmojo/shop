@@ -41,6 +41,7 @@
             <th>{{ $i->kode_transaksi }}</th>
             <th>{{ $i->created_at }}</th>
             <th>
+              <a href="#" type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal1{{$i->id}}">Detail</a>
               <a href="#" type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal{{$i->id}}">Kirim No Resi</a>
             </th>
           </tr>
@@ -62,14 +63,60 @@
           <h4 class="modal-title">Masukkan Nomor Resi</h4>
         </div>
         <div class="modal-body">
-          <form action="{{ route('add-resi', $i->kode_transaksi) }}" method="POST">
+          <form action="{{ route('add-resi', $i->id) }}" method="POST">
             {{ csrf_field() }}
             <div class="form-group">
               <label for="resi">No Resi:</label>
               <input type="resi" class="form-control" id="resi" name="resi">
             </div>
-            <button type="submit" class="btn btn-default">Masuk</button>
+            <button type="submit" class="btn btn-success">Masuk</button>
           </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="modal fade" id="myModal1{{$i->id}}" role="dialog">
+    <div class="modal-dialog modal-lg">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Detail Pemesanan</h4>
+        </div>
+        <div class="modal-body">
+          <table>
+            <thead>
+              <tr class="title-top">
+                  <center><th class="product-thumbnail">Image</th></center>
+                  <center><th class="product-name">Product</th></center>
+                  <center><th class="product-price">Price</th></center>
+                  <center><th class="product-quantity">Satuan</th></center>
+                  <center><th class="product-subtotal">Total</th></center>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+              @foreach($transaksi as $details)
+                @foreach($details->trans as $t)
+                  <tr>
+
+                          <td class="product-name" style="padding-right: 50px"><img src="{{ asset('produk/'. $t->image_produk ) }}" style="width: 150px"alt="product img"></td>
+                          <td class="product-name" style="padding-right: 50px">{{ $t['keterangan_produk'] }}</td>
+                          <td class="product-name" style="padding-right: 50px">{{ $t['subtotal'] }}</td>
+                          <td class="product-name" style="padding-right: 100px">{{ $t['quantity'] }}</td>
+                          <td class="product-name" style="padding-right: 50px">{{ $t['subtotal'] * $t['quantity'] }}</td>
+
+                  </tr>
+                @endforeach
+              @endforeach
+              </tr>
+            </tbody>
+        </table>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

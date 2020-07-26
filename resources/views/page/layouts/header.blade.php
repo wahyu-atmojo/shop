@@ -21,6 +21,8 @@
 
 	<!-- Cusom css -->
    <link rel="stylesheet" href="{{ asset('main/css/custom.css') }}">
+   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+   <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
 
 	<!-- Modernizer js -->
 	<script src="{{ asset('main/js/vendor/modernizr-3.5.0.min.js') }}"></script>

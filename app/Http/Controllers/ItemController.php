@@ -4,30 +4,35 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Items;
+use App\Transaction_Details;
 
 class ItemController extends Controller
 {
     public function index(Request $request){
         $cari = $request->cari;
+        $notif = Transaction_Detail::where('status', 2)->first();
         $item = Items::orderBy('created_at', 'Desc' )->where('name','like',"%".$cari."%")->paginate(10);
-    	return view('admin.items.index', compact('item'));
+    	return view('admin.items.index', compact('item', 'notif'));
     }
 
     public function produk_kosong(Request $request){
         $cari = $request->cari;
+        $notif = Transaction_Detail::where('status', 2)->first();
         $item = Items::orderBy('created_at', 'Desc' )->where('name','like',"%".$cari."%")->where('stock', 0)->paginate(10);
-        return view('admin.items.produk_kosong', compact('item'));
+        return view('admin.items.produk_kosong', compact('item', 'notif'));
     }
 
     public function produk_diskon(Request $request){
         $cari = $request->cari;
+        $notif = Transaction_Detail::where('status', 2)->first();
+
         $item = Items::orderBy('created_at', 'Desc' )->where('name','like',"%".$cari."%")->paginate(10);
-        return view('admin.items.produk_diskon', compact('item'));
+        return view('admin.items.produk_diskon', compact('item', 'notif'));
     }
 
     public function add(){
-
-    	return view('admin.items.add');
+        $notif = Transaction_Detail::where('status', 2)->first();
+    	return view('admin.items.add', compact('notif');
     }
 
     public function add_proses(Request $request){
@@ -62,7 +67,8 @@ class ItemController extends Controller
 
     public function edit($id){
         $item = Items::findOrFail($id);
-        return view('admin.items.edit', compact('item'));
+        $notif = Transaction_Detail::where('status', 2)->first();
+        return view('admin.items.edit', compact('item', compact('notif')));
     }
 
     public function edit_proses(Request $request, $id){
@@ -106,7 +112,8 @@ class ItemController extends Controller
 
     public function add_stock($id){
         $item = Items::findOrFail($id);
-        return view('admin.items.add_stock', compact('item'));
+        $notif = Transaction_Detail::where('status', 2)->first();
+        return view('admin.items.add_stock', compact('item', compact('notif')));
     }
 
     public function add_stock_proses(Request $request, $id){

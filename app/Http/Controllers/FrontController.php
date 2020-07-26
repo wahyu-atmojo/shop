@@ -12,33 +12,55 @@ use App\Transaction_Detail;
 class FrontController extends Controller
 {
     public function index(){
-        
+        if(Auth::check()){
+
+            $notif = Transaction_Detail::where('user_id', Auth::user()->id)->where('status', 3)->orderBy('created_at', 'DESC')->first();
+            // dd($notif);
+        }
+        // dd($notif);
     	$item = Items::orderBy('created_at', 'Desc' )->get();
-    	return view('index',  compact('item'));
+    	return view('index',  compact('item', 'notif'));
     }
 
     public function detail($id){
+        if(Auth::check()){
+        $notif = Transaction_Detail::where('user_id', Auth::user()->id)->where('status', 3)->orderBy('created_at', 'DESC')->first();
+            }
     	$detail = Items::findOrfail($id);
     	$item = Items::orderBy('created_at', 'Desc' )->take(3)->get();
-    	return view('page.product', compact('detail', 'item'));
+    	return view('page.product', compact('detail', 'item', 'notif'));
     }
 
     public function contact(){
-    	return view('page.contact');
+        if(Auth::check()){
+        $notif = Transaction_Detail::where('user_id', Auth::user()->id)->where('status', 3)->orderBy('created_at', 'DESC')->first();
+            }
+    	return view('page.contact', compact('notif'));
     }
 
     public function semua_product(){
+        if(Auth::check()){
+            $notif = Transaction_Detail::where('user_id', Auth::user()->id)->where('status', 3)->orderBy('created_at', 'DESC')->first();
+        }
     	$item = Items::orderBy('created_at', 'Desc' )->paginate(9);
-    	return view('page.semua_product',  compact('item'));
+    	return view('page.semua_product',  compact('item', 'notif'));
     }
 
     public function riwayat_belanja(){
         $riwayat = Transaction_Detail::where('user_id', Auth::user()->id)->where('status', 3)->orderBy('created_at', 'DESC')->get();
-        // dd($riwayat);
-        
-        
-        return view('page.riwayat-belanja', compact('riwayat', 'resi'));
-       
+        $notif = Transaction_Detail::where('user_id', Auth::user()->id)->where('status', 3)->first();
+        $read = Transaction_Detail::find($notif->id);
+        if($read->notif_status_member == 1){
+
+            $read->notif_status_member = 0;
+            $read->save();
+            return view('page.riwayat-belanja', compact('riwayat', 'resi', 'notif'));
+
+        }else{
+            return view('page.riwayat-belanja', compact('riwayat', 'resi', 'notif'));
+
+        };
+ 
     }
 
     public function akun(){

@@ -43,11 +43,20 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
-          <span>Pembayaran</span>
+          <span>Pembayaran</span> 
+          @if($notif)
+            <span class="badge badge-light" style="margin-bottom: 20px; background-color: red">!</span>
+          @else
+          @endif
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="{{ route('list-payment') }}">Barang Sudah Terbayar</a>
+            <a class="collapse-item" href="{{ route('list-payment') }}">Barang Sudah Terbayar 
+              @if($notif)
+                <span class="badge badge-light" style="margin-bottom: 20px; background-color: red">!</span>
+              @else
+              @endif
+            </a>
             <a class="collapse-item" href="{{ route('sudah-terkirim') }}">Produk yang Sudah Terkirim</a>
           </div>
         </div>

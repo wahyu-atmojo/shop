@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Items;
+use App\Transaction_Detail;
+use Auth;
 
 use Session;
 
@@ -17,8 +19,12 @@ class CartController extends Controller
         $subtotal = collect($cart)->sum(function($q) {
             return $q['quantity'] * $q['price'];
         });
+        if(Auth::check()){
+            
+        $notif = Transaction_Detail::where('user_id', Auth::user()->id)->where('status', 3)->orderBy('created_at', 'DESC')->first();
+        }
         // dd($subtotal);
-        return view('page.cart', compact('cart', 'subtotal'));
+        return view('page.cart', compact('cart', 'subtotal', 'notif'));
     }
 
     public function getAddToCart(Request $request){

@@ -204,7 +204,16 @@
 								</div> --}}
 								<!-- End Shopping Cart -->
 							</li>
-							<li class="setting__bar__icon"><img src="{{ asset('icons/icon_setting.png') }}" style="color: white"><a class="setting__active" href="#"></a>
+							<li class="setting__bar__icon"><img src="{{ asset('icons/icon_setting.png') }}" style="color: white">
+								@if(Auth::check())
+								{{-- {{dd($notif->notif_status_member)}} --}}
+									@if($notif->notif_status_member == 0)
+									@else
+										<span class="badge badge-light" style="margin-bottom: 20px">!</span>
+									@endif
+								@else
+								@endif
+								<a class="setting__active" href="#"></a>
 								<div class="searchbar__content setting__block">
 									<div class="content-inner">
 										<div class="switcher-currency">
@@ -222,7 +231,16 @@
 														@if(Auth::check())
 														<span><a href="{{ route('setting-akun') }}">Pengaturan Akun</a></span>
 														<span><a href="{{ route('my-cart') }}">Produk yang belum terbayar</a></span>
-														<span><a href="{{ route('riwayat_belanja') }}">Riwayat Belanja</a></span>
+														<span>
+															
+															<a href="{{ route('riwayat_belanja') }}">
+																@if($notif->notif_status_member == 0)
+																@else
+																	<span class="badge badge-light" style="background-color: red">!</span>
+																@endif
+																Riwayat Belanja
+															</a>
+														</span>
 														<span><a href="c" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></span>
 															<form id="logout-form" action="{{ route('_logout') }}" method="POST" style="display: none;">
 						                                        @csrf

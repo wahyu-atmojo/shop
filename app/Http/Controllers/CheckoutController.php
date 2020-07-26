@@ -18,8 +18,9 @@ class CheckoutController extends Controller
         $subtotal = collect($cart)->sum(function($q) {
             return $q['quantity'] * $q['price'];
         });
+        $notif = Transaction_Detail::where('user_id', Auth::user()->id)->where('status', 3)->orderBy('created_at', 'DESC')->first();
         // dd($subtotal);
-    	return view('page.checkout', compact('subtotal'));
+    	return view('page.checkout', compact('subtotal', 'notif'));
     }
 
     public function prosescheckout($id){
@@ -104,8 +105,10 @@ class CheckoutController extends Controller
     }
 
     public function bukti_transfer(){
+
+        $notif = Transaction_Detail::where('user_id', Auth::user()->id)->where('status', 3)->orderBy('created_at', 'DESC')->first();
     	$transaksi = Transaction_Detail::where('user_id', Auth::user()->id)->orderBy('created_at', 'DESC')->first();
-    	return view('page.upload_transfer', compact('transaksi'));
+    	return view('page.upload_transfer', compact('transaksi', 'notif'));
     }
 
     public function add_bukti(Request $request, $id){
