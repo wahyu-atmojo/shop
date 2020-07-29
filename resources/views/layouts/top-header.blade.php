@@ -208,6 +208,7 @@
 								@if(Auth::check())
 								{{-- {{dd($notif->notif_status_member)}} --}}
 									@if($notif->notif_status_member == 0)
+									@elseif($notif->notif_status_member == Null)
 									@else
 										<span class="badge badge-light" style="margin-bottom: 20px">!</span>
 									@endif

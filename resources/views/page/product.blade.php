@@ -349,7 +349,7 @@
         			</div>
         			<div class="col-lg-3 col-12 md-mt-40 sm-mt-40">
         				<div class="shop__sidebar">
-        					<aside class="wedget__categories poroduct--cat">
+        					{{-- <aside class="wedget__categories poroduct--cat">
         						<h3 class="wedget__title">Product Categories</h3>
         						<ul>
         							<li><a href="#">Biography <span>(3)</span></a></li>
@@ -369,7 +369,7 @@
         							<li><a href="#">Toys & Games <span>(3)</span></a></li>
         							<li><a href="#">hoodies <span>(3)</span></a></li>
         						</ul>
-        					</aside>
+        					</aside> --}}
         					<!-- <aside class="wedget__categories pro--range">
         						<h3 class="wedget__title">Filter by price</h3>
         						<div class="content-shopby">

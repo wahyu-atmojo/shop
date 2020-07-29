@@ -207,6 +207,7 @@
 								@if(Auth::check())
 									@if($notif->notif_status_member == 1)
 										<span class="badge badge-light" style="margin-bottom: 20px">!</span>
+									@elseif($notif->notif_status_member == Null)
 									@else
 									@endif
 								@else

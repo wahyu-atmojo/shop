@@ -160,13 +160,15 @@ class CheckoutController extends Controller
         $kode = Transaction::where('user_id', Auth::user()->id)->orderBy('created_at', 'DESC')->first();
         $total = Transaction::where('user_id', Auth::user()->id)->where('status', 1)->where('kode_transaksi', $kode->kode_transaksi)->sum('quantity');
         $subtotal = Transaction::where('user_id', Auth::user()->id)->where('status', 1)->where('kode_transaksi', $kode->kode_transaksi)->sum('subtotal');
+        $notif = Transaction_Detail::where('user_id', Auth::user()->id)->where('status', 3)->orderBy('created_at', 'DESC')->first();
 
-    	$transaksi = Transaction::where('user_id', Auth::user()->id)->where('status', 1)->where('kode_transaksi', $kode->kode_transaksi)->get();
+
+    	$transaksi = Transaction_Detail::where('user_id', Auth::user()->id)->where('status', 1)->where('kode_transaksi', $kode->kode_transaksi)->get();
         // dd($transaksi);
         if(!$transaksi->isEmpty()){
         	
 
-        	return view('page.my-cart', compact('transaksi', 'subtotal', 'total'));
+        	return view('page.my-cart', compact('transaksi', 'subtotal', 'total', 'notif'));
 
         }else{
             return redirect('/')->with('warning', 'Anda tidak punya pembelian yang belum terbayar');

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Items;
-use App\Transaction_Details;
+use App\Transaction_Detail;
 
 class ItemController extends Controller
 {
@@ -32,7 +32,7 @@ class ItemController extends Controller
 
     public function add(){
         $notif = Transaction_Detail::where('status', 2)->first();
-    	return view('admin.items.add', compact('notif');
+    	return view('admin.items.add', compact('notif'));
     }
 
     public function add_proses(Request $request){
@@ -68,7 +68,7 @@ class ItemController extends Controller
     public function edit($id){
         $item = Items::findOrFail($id);
         $notif = Transaction_Detail::where('status', 2)->first();
-        return view('admin.items.edit', compact('item', compact('notif')));
+        return view('admin.items.edit', compact('item', 'notif'));
     }
 
     public function edit_proses(Request $request, $id){
@@ -113,7 +113,7 @@ class ItemController extends Controller
     public function add_stock($id){
         $item = Items::findOrFail($id);
         $notif = Transaction_Detail::where('status', 2)->first();
-        return view('admin.items.add_stock', compact('item', compact('notif')));
+        return view('admin.items.add_stock', compact('item','notif'));
     }
 
     public function add_stock_proses(Request $request, $id){
