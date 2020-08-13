@@ -32,8 +32,11 @@
 								<h4><a href="{{ route('detail-product', $i->id) }}">{{$i->name}}</a></h4>
 								<ul class="prize d-flex">
 									@if($i->diskon > 0)
-									<li>Rp. {{($i->price)-(($i->price * $i->diskon)/100)}}</li>
-									<li class="old_prize">{{$i->price}}</li>
+									<?php 
+										$diskon = ($i->price)-(($i->price * $i->diskon)/100);
+									?>
+									<li>Rp. {{ number_format($diskon, 2, ',','.')}}</li>
+									<li class="old_prize">{{ number_format($i->price, 2, ',','.')}}</li>
 									@else
 									<li>Rp. {{ number_format($i->price, 2, ',','.') }}</li>
 									@endif

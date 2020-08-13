@@ -4,7 +4,7 @@
 					<div class="col-md-6 col-sm-6 col-6 col-lg-2">
 						<div class="logo">
 							<a href="{{ Route('/') }}">
-								<!-- <img src="images/logo/logo.png" alt="logo images"> -->UD. Tumbuh Jati
+								<img src="{{asset('icons/logo.png')}}" alt="UD. Tumbuh Jati" class="img-logo">
 							</a>
 						</div>
 					</div>
@@ -115,6 +115,8 @@
 									</div>
 								</li> -->
 								<li><a href="{{ route('contact') }}">Tentang Kami</a></li>
+								<li><a href="{{ route('gal') }}">Gallery</a></li>
+								<li><a href="{{ route('faq') }}">FAQ</a></li>
 								<!-- <li><a href="{{ route('contact') }}">Contact</a></li> -->
 							</ul>
 						</nav>
@@ -205,10 +207,14 @@
 							</li>
 							<li class="setting__bar__icon"><img src="{{ asset('icons/icon_setting.png') }}" style="color: white">
 								@if(Auth::check())
-									@if($notif->notif_status_member == 1)
-										<span class="badge badge-light" style="margin-bottom: 20px">!</span>
-									@elseif($notif->notif_status_member == Null)
+									{{-- {{ dd($notif)}} --}}
+									@if($notif == Null)
 									@else
+										@if($notif->notif_status_member == 1)
+											<span class="badge badge-light" style="margin-bottom: 20px">!</span>
+										@elseif($notif->notif_status_member == Null)
+										@else
+										@endif
 									@endif
 								@else
 								@endif
@@ -232,9 +238,12 @@
 														<span>
 															<a href="{{ route('riwayat_belanja') }}">
 																{{-- {{dd($notif)}} --}}
-																@if($notif->notif_status_member == 1)
-																	<span class="badge badge-light" style="background-color: red">!</span>
+																@if($notif == Null)
 																@else
+																	@if($notif->notif_status_member == 1)
+																		<span class="badge badge-light" style="background-color: red">!</span>
+																	@else
+																	@endif
 																@endif
 																Riwayat Belanja
 															</a>

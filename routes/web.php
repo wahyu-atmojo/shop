@@ -65,6 +65,8 @@ Route::group(['middleware' => ['auth']], function(){
 	Route::get('detail-product/{id}' , 'FrontController@detail')->name('detail-product');
 	Route::get('semua-product' , 'FrontController@semua_product')->name('semua_produk');
 	Route::get('contact' , 'FrontController@contact')->name('contact');
+	Route::get('f-a-q' , 'FrontController@faq')->name('faq');
+	Route::get('gallery' , 'FrontController@gallery')->name('gal');
 
 
 

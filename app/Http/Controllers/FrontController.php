@@ -49,22 +49,38 @@ class FrontController extends Controller
     public function riwayat_belanja(){
         $riwayat = Transaction_Detail::where('user_id', Auth::user()->id)->where('status', 3)->orderBy('created_at', 'DESC')->get();
         $notif = Transaction_Detail::where('user_id', Auth::user()->id)->where('status', 3)->first();
-        $read = Transaction_Detail::find($notif->id);
-        if($read->notif_status_member == 1){
-
-            $read->notif_status_member = 0;
-            $read->save();
+        $read = Transaction_Detail::find($notif['id']);
+        // dd($notif);
+        if($notif == Null){
             return view('page.riwayat-belanja', compact('riwayat', 'resi', 'notif'));
-
         }else{
-            return view('page.riwayat-belanja', compact('riwayat', 'resi', 'notif'));
+            if($read->notif_status_member == 1){
+
+                $read->notif_status_member = 0;
+                $read->save();
+                return view('page.riwayat-belanja', compact('riwayat', 'resi', 'notif'));
+
+            }else{
+                return view('page.riwayat-belanja', compact('riwayat', 'resi', 'notif'));
+
+            };
 
         };
  
     }
 
     public function akun(){
-        return view('page.setting_akun');
+        if(Auth::check()){
+        $notif = Transaction_Detail::where('user_id', Auth::user()->id)->where('status', 3)->orderBy('created_at', 'DESC')->first();
+            }
+        return view('page.setting_akun', compact('notif'));
+    }
+
+    public function gallery(){
+        if(Auth::check()){
+        $notif = Transaction_Detail::where('user_id', Auth::user()->id)->where('status', 3)->orderBy('created_at', 'DESC')->first();
+            }
+        return view('page.gallery', compact('notif'));
     }
 
     public function set_akun(Request $request, $id){
@@ -78,5 +94,9 @@ class FrontController extends Controller
         $user->alamat = $request->alamat;
         $user->save();
         return redirect()->back()->with('success', 'Akun sudah berhasil diupdate');
+    }
+
+    public function faq(){
+        return view('page.faq');
     }
 }
