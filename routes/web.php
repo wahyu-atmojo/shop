@@ -47,6 +47,8 @@ Route::group(['middleware' => ['auth']], function(){
 	Route::get('/bukti-transfer', 'CheckoutController@bukti_transfer')->name('bukti_transfer');
 	Route::post('/bukti-transfer/{id}', 'CheckoutController@add_bukti')->name('add_transfer');
 	Route::get('/my-cart','CheckoutController@mycart')->name('my-cart');
+	Route::get('/hapus-checkout/{id}' , 'CheckoutController@hapus_checkout')->name('delete-checkout');
+
 
 	//Member
 	Route::get('/riwayat-belanja','FrontController@riwayat_belanja')->name('riwayat_belanja');

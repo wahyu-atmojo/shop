@@ -35,4 +35,8 @@ class User extends Authenticatable
      public function transaction_detail(){
         return $this->hasMany('App\Transaction_Detail', 'user_id');
     }
+
+    public function kotas(){
+        return $this->belongsTo('App\Kota', 'kota');
+    }
 }

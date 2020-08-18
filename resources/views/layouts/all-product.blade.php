@@ -78,4 +78,25 @@
 				</div>
 			</div> -->
 		</div>
+		<div class="modal fade in" id="modal-alert" tabindex="-1" role="dialog" aria-labelledby="editFee" aria-hidden="false" style="padding-right: 19px;"><div class="modal-backdrop fade in" style="height: 772px;"></div>
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header bg-danger">
+						<h4 class="modal-title">Attention!</h4>
+					</div>
+					<div class="modal-body">
+						<p>All purchases are given 3 hours. If seller does not respond within 3 hours, coins will automatically sent to buyer</p>
+			      	</div>
+				    <div class="modal-footer">
+					    <button type="button" class="btn btn-success bg-danger" data-dismiss="modal">Close</button>
+				    </div>
+				</div>
+			</div>
+		</div>
 </section>
+<script type="text/javascript">
+$(window).on("load", function () {
+	$("#modal-alert").modal('show');
+	 	
+});
+</script>

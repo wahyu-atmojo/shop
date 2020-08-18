@@ -76,7 +76,12 @@
                            Kota
                         </span>
                         <div class="wrap-input100 validate-input m-b-36" data-validate = " Kota is required">
-                            <input class="input100" id="kota" type="text" name="kota" required autofocus>
+                            <select class="input100" id="kota" type="text" name="kota">
+                            @foreach($kota as $k)
+                                <option value="{{ $k->id }}">{{ $k->nama }}</option>
+                            @endforeach
+                              </select>
+                            {{-- <input class="input100" id="kota" type="text" name="kota" required autofocus> --}}
                             <span class="focus-input100"></span>
                         </div>
 

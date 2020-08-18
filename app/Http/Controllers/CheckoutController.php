@@ -7,12 +7,16 @@ use Illuminate\Http\Request;
 use App\Transaction;
 use App\Transaction_Detail;
 use App\Items;
+use App\Kota;
+use App\User;
 use Session;
 use Auth;
 
 class CheckoutController extends Controller
 {
     public function checkout(){
+        $kota = User::where('kota', 113)->first();
+        // dd($kota);
     	$cart = session()->get('cart');
         // dd($cart);
         $subtotal = collect($cart)->sum(function($q) {
@@ -20,7 +24,7 @@ class CheckoutController extends Controller
         });
         $notif = Transaction_Detail::where('user_id', Auth::user()->id)->where('status', 3)->orderBy('created_at', 'DESC')->first();
         // dd($subtotal);
-    	return view('page.checkout', compact('subtotal', 'notif'));
+    	return view('page.checkout', compact('subtotal', 'notif', 'kota'));
     }
 
     public function prosescheckout($id){
@@ -54,7 +58,11 @@ class CheckoutController extends Controller
 
         // $data_transaksi = Transaction::where('kode_transaksi', $transaksi->kode_transaksi)->first();
         // dd($data_transaksi);
+        if(Auth::user()->kota == 113){
         $harga_pengiriman = 200000;
+        }else{
+            $harga_pengiriman = 300000;
+        }
         // $total_jumlah = Transaction::where('kode_transaksi', $transaksi->kode_transaksi)->sum('quantity');
         // $total_price = Transaction::where('kode_transaksi', $transaksi->kode_transaksi)->sum('subtotal');
             $transaksi_detail = new Transaction_Detail;
@@ -63,7 +71,7 @@ class CheckoutController extends Controller
             $transaksi_detail->total_quantity = $total_cart;
             $transaksi_detail->total_harga = $subtotal + $harga_pengiriman;
             $transaksi_detail->harga_pengiriman = $harga_pengiriman;
-            $transaksi_detail->pengiriman = 'JNE';
+            $transaksi_detail->pengiriman = 'Robby Argo';
             $transaksi_detail->bukti_transfer = Null;
             $transaksi_detail->no_resi = Null;
             $transaksi_detail->status = 1;
@@ -105,9 +113,9 @@ class CheckoutController extends Controller
     }
 
     public function bukti_transfer(){
-
+        // dd(Auth::user()->kota);
         $notif = Transaction_Detail::where('user_id', Auth::user()->id)->where('status', 3)->orderBy('created_at', 'DESC')->first();
-    	$transaksi = Transaction_Detail::where('user_id', Auth::user()->id)->orderBy('created_at', 'DESC')->first();
+    	$transaksi = Transaction_Detail::where('user_id', Auth::user()->id)->where('status', 1)->first();
     	return view('page.upload_transfer', compact('transaksi', 'notif'));
     }
 
@@ -128,7 +136,7 @@ class CheckoutController extends Controller
     	$transaksi->bukti_transfer = $foto;
     	$transaksi->status = 2;
         // $transaksi->trans->id_transaction_detail = $id;
-        // dd($transaksi);
+        // dd($id);
     	$transaksi->save();
         // dd($transaksi->kode_transaksi);
 
@@ -157,21 +165,52 @@ class CheckoutController extends Controller
 
 
     public function mycart(){
-        $kode = Transaction::where('user_id', Auth::user()->id)->orderBy('created_at', 'DESC')->first();
-        $total = Transaction::where('user_id', Auth::user()->id)->where('status', 1)->where('kode_transaksi', $kode->kode_transaksi)->sum('quantity');
-        $subtotal = Transaction::where('user_id', Auth::user()->id)->where('status', 1)->where('kode_transaksi', $kode->kode_transaksi)->sum('subtotal');
-        $notif = Transaction_Detail::where('user_id', Auth::user()->id)->where('status', 3)->orderBy('created_at', 'DESC')->first();
+        $kode = Transaction_Detail::where('user_id', Auth::user()->id)->where('status', 1)->orderBy('created_at', 'DESC')->first();
+        if($kode){
+
+            $total = Transaction::where('user_id', Auth::user()->id)->where('status', 1)->where('kode_transaksi', $kode->kode_transaksi)->sum('quantity');
+            $subtotal = Transaction::where('user_id', Auth::user()->id)->where('status', 1)->where('kode_transaksi', $kode->kode_transaksi)->sum('subtotal');
+            $notif = Transaction_Detail::where('user_id', Auth::user()->id)->where('status', 3)->orderBy('created_at', 'DESC')->first();
 
 
-    	$transaksi = Transaction_Detail::where('user_id', Auth::user()->id)->where('status', 1)->where('kode_transaksi', $kode->kode_transaksi)->get();
+        $transaksi = Transaction_Detail::where('user_id', Auth::user()->id)->where('status', 1)->orderBy('created_at', 'DESC')->get();
         // dd($transaksi);
-        if(!$transaksi->isEmpty()){
-        	
+            if($transaksi){
+               
+                return view('page.my-cart', compact('transaksi', 'subtotal', 'total', 'notif'));
 
-        	return view('page.my-cart', compact('transaksi', 'subtotal', 'total', 'notif'));
-
+            }else{
+                return redirect('/')->with('warning', 'Anda tidak punya pembelian yang belum terbayar');
+            };
         }else{
             return redirect('/')->with('warning', 'Anda tidak punya pembelian yang belum terbayar');
+
+        }
+        // dd($subtotal);
+        
+    }
+
+    public function hapus_checkout($id){
+
+        $hapus = Transaction::find($id);
+        // dd($hapus);
+        $hapus->delete();
+        if(!$hapus){
+            return redirect()->back();
+        }else{
+            $kode = Transaction::where('kode_transaksi', $hapus->kode_transaksi)->get();
+            $jml = count($kode);
+            if($jml == 0 ){
+                $hapus_detail = Transaction_Detail::find($hapus->id_transaction_detail);
+                // echo "hapus";
+                $hapus_detail->delete();
+
+                return redirect()->back();
+
+            }else{
+                // echo "tidak";
+                return redirect()->back();
+            }
         }
     }
 }

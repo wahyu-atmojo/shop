@@ -244,7 +244,11 @@
         							<ul>
         								<li>
         									<input name="shipping_method[0]" data-index="0" value="legacy_flat_rate" checked="checked" type="radio">
+        									@if($kota)
         									<label>Rp. 200000</label>
+        									@else
+        									<label>Rp. 300000</label>
+        									@endif
         								</li>
         								{{-- <li>
         									<input name="shipping_method[0]" data-index="0" value="legacy_flat_rate" checked="checked" type="radio">
@@ -254,7 +258,11 @@
         						</li>
         					</ul>
         					<ul class="total__amount">
+        						@if($kota)
         						<li>Total Pesanan <span>Rp. {{ $subtotal + 200000 }}</span></li>
+        						@else
+        						<li>Total Pesanan <span>Rp. {{ $subtotal + 300000 }}</span></li>
+        						@endif
         					</ul>
         				</div>
 					    <div id="accordion" class="checkout_accordion mt--30" role="tablist">

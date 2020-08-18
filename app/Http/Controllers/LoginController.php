@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\login;
 use App\User;
+use App\Kota;
 use Hash;
 use Auth;
 use Session;
@@ -16,7 +17,8 @@ class LoginController extends Controller
     }
 
     public function register(){
-        return view('auth.register');
+        $kota = Kota::All();
+        return view('auth.register', compact('kota'));
     }
 
     public function addregister(Request $data){

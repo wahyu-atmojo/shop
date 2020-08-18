@@ -94,29 +94,32 @@
                                 <table>
                                     <thead>
                                         <tr class="title-top">
-                                            <th class="product-name">Kode Transaksi</th>
                                             <th class="product-thumbnail">Image</th>
                                             <th class="product-name">Product</th>
                                             <th class="product-price">Price</th>
                                             <th class="product-quantity">Satuan</th>
                                             <th class="product-subtotal">Total</th>
+                                            <th class="product-subtotal">Hapus</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    	{{-- {{dd($transaksi)}} --}}
-			            				@foreach($transaksi as $id => $details)
-                                    	{{-- {{dd($details['subtotal'])}} --}}
-	                                        <tr>
-
-                                    			<td class="product-name"><a href="#">{{ $details['kode_transaksi'] }}</a></td>
-	                                            <td class="product-thumbnail"><img src="{{ asset('produk/'.$details['image_produk']) }}" alt="product img"></td>
-	                                            <td class="product-name"><a href="#">{{ $details['keterangan_produk'] }}</a></td>
-	                                            <td class="product-price"><span class="amount">{{ $details['subtotal'] }}</span></td>
-	                                            <td class="product-quantity">{{ $details['quantity'] }}</td>
-	                                            <td class="product-subtotal">{{ $details['quantity'] * $details['subtotal'] }}</td>
-				                               
-	                                        </tr>
-					                    @endforeach
+                                    	<tr>
+					            			@foreach($transaksi as  $details)
+		                                    	@foreach($details->trans as $t)
+	                                            <td class="product-name">
+	                                            	Kode Transaksi : {{ $t['kode_transaksi'] }}
+	                                        	</td>
+				                                        <tr>
+				                                            <td class="product-thumbnail"><img src="{{ asset('produk/'.$t['image_produk']) }}" alt="product img"></td>
+				                                            <td class="product-name"><a href="#">{{ $t['keterangan_produk'] }}</a></td>
+				                                            <td class="product-price"><span class="amount">{{ $t['subtotal'] }}</span></td>
+				                                            <td class="product-quantity">{{ $t['quantity'] }}</td>
+				                                            <td class="product-subtotal">{{ $t['quantity'] * $t['subtotal'] }}</td>
+				                                            <td class="product-subtotal"><a href="{{ route('delete-checkout', $t['id']) }}" class="btn btn-danger"  type="submit" title="Hapus">Hapus</td>
+				                                        </tr>
+				                                    @endforeach
+							                    @endforeach
+							            </tr>
                                     </tbody>
                                 </table>
                             </div>

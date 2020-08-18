@@ -47,7 +47,7 @@ class FrontController extends Controller
     }
 
     public function riwayat_belanja(){
-        $riwayat = Transaction_Detail::where('user_id', Auth::user()->id)->where('status', 3)->orderBy('created_at', 'DESC')->get();
+        $riwayat = Transaction_Detail::where('user_id', Auth::user()->id)->where('status', '!=', 1)->orderBy('created_at', 'DESC')->get();
         $notif = Transaction_Detail::where('user_id', Auth::user()->id)->where('status', 3)->first();
         $read = Transaction_Detail::find($notif['id']);
         // dd($notif);

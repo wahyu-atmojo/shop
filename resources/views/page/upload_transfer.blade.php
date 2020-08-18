@@ -246,6 +246,21 @@
 					            	<div class="payment-body">Rekening : 0502391617 </div>
 					            	<div class="payment-body">Nama : Zakhiya </div>
 					            	<div class="payment-body">Bank : BNI</div>
+					            	<div class="payment-body">Jasa Pengiriman : Robby Argo </div>
+					            	<div class="payment-body">keterangan : Harga termasuk ongkos kirim</div>
+						        </div>
+						    </div>
+						    <div class="payment">
+						        <div class="che__header" role="tab" id="headingOne">
+						          	<a class="checkout__title" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+						                <span>Detail</span>
+						          	</a>
+						        </div>
+						        <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+					            	<div class="payment-body">Nama : {{$transaksi->user_transaction['name']}}</div>
+					            	<div class="payment-body">Detail Alamat : {{$transaksi->user_transaction['alamat']}} </div>
+					            	<div class="payment-body">Kota : {{$transaksi->user_transaction->kotas['nama']}} </div>
+					            	
 						        </div>
 						    </div>
 						    {{-- <div class="payment">
