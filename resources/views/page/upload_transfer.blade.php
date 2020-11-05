@@ -260,6 +260,7 @@
 					            	<div class="payment-body">Nama : {{$transaksi->user_transaction['name']}}</div>
 					            	<div class="payment-body">Detail Alamat : {{$transaksi->user_transaction['alamat']}} </div>
 					            	<div class="payment-body">Kota : {{$transaksi->user_transaction->kotas['nama']}} </div>
+					            	{{-- <div class="payment-body">Item : {{$produk->keterangan_produk }} </div> --}}
 					            	
 						        </div>
 						    </div>

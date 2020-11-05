@@ -38,7 +38,10 @@ Route::group(['middleware' => ['auth']], function(){
 	Route::get('/produk-diskon' , 'ItemController@produk_diskon')->name('produk-diskon');
 	Route::get('/payment', 'TransactionController@index')->name('list-payment');
 	Route::get('/sudah_terkirim', 'TransactionController@sudah_terkirim')->name('sudah-terkirim');
+	Route::get('/laporan_barang_jual', 'TransactionController@laporan_terkirim')->name('laporan-terkirim');
 	Route::post('/add-resi/{id}', 'TransactionController@add_resi')->name('add-resi');
+	Route::get('/laporan_penjualan' , 'LaporanController@data_jual')->name('lap_data_jual');
+	Route::get('/cetak_laporan' , 'LaporanController@cetak_pdf')->name('cetak_laporan');
 
 
 	//Checkout

@@ -16,7 +16,9 @@
   <div class="card-header py-3">
     <h6 class="m-0 font-weight-bold text-primary">Data List Produk Yang Sudah Terkirim</h6>
   </div>
-  
+  <div class="card-header py-3">
+    <a href="{{ route('cetak_laporan')}}" class="btn btn-success">Cetak Laporan</a>
+  </div>
   <div class="card-body">
     <div class="table-responsive">
       <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -36,7 +38,6 @@
             $no = 1;
           ?>
           @foreach($transaksi as $i)
-            {{-- {{dd($i->user)}} --}}
           <tr>
             <th>{{ $no++ }}</th>
             <th>{{ $i->user['name'] }}</th>
@@ -50,7 +51,7 @@
           </tr>
           @endforeach
         </tfoot>
-        {{-- {{$transaksi->links()}} --}}
+        {{$transaksi->links()}}
       </table>
     </div>
   </div>

@@ -41,7 +41,7 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
           <i class="fas fa-fw fa-cog"></i>
           <span>Pembayaran</span> 
           @if($notif)
@@ -49,7 +49,7 @@
           @else
           @endif
         </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="{{ route('list-payment') }}">Barang Sudah Terbayar 
               @if($notif)
@@ -58,6 +58,19 @@
               @endif
             </a>
             <a class="collapse-item" href="{{ route('sudah-terkirim') }}">Produk yang Sudah Terkirim</a>
+          </div>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Laporan</span>
+        </a>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="{{ route('lap_data_jual') }}">Barang Terjual / Terkirim</a>
+            {{-- <a class="collapse-item" href="{{ route('produk-diskon') }}">Produk Diskon</a> --}}
           </div>
         </div>
       </li>

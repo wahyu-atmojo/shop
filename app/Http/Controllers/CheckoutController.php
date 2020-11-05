@@ -56,6 +56,10 @@ class CheckoutController extends Controller
 
         $code = 'TJ'.$id.date('y').date('m').str_random(6);
 
+        // $pesan = Transaction_Detail::where('user_id', Auth::user()->id)->where('status', 1)->first();
+        // if($pesan){
+        //    return redirect('/bukti-transfer')->with(['success' => 'Produk Berhasil Ditambahkan']); 
+        // }
         // $data_transaksi = Transaction::where('kode_transaksi', $transaksi->kode_transaksi)->first();
         // dd($data_transaksi);
         if(Auth::user()->kota == 113){
@@ -115,8 +119,10 @@ class CheckoutController extends Controller
     public function bukti_transfer(){
         // dd(Auth::user()->kota);
         $notif = Transaction_Detail::where('user_id', Auth::user()->id)->where('status', 3)->orderBy('created_at', 'DESC')->first();
-    	$transaksi = Transaction_Detail::where('user_id', Auth::user()->id)->where('status', 1)->first();
-    	return view('page.upload_transfer', compact('transaksi', 'notif'));
+        $transaksi = Transaction_Detail::where('user_id', Auth::user()->id)->where('status', 1)->first();
+     //    dd($transaksi->id);
+    	// $produk = Transaction::where('status', 1)->where('id_transaction_detail', $transaksi->id_transaction_detail)->get();
+    	return view('page.upload_transfer', compact('transaksi', 'notif', 'produk'));
     }
 
     public function add_bukti(Request $request, $id){
@@ -146,7 +152,7 @@ class CheckoutController extends Controller
         // dd($trans);
         // $trans->save();
 
-        $jumlah = Transaction::where('kode_transaksi', $transaksi->kode_transaksi)->where('status', 2)->get();
+        $jumlah = Transaction::where('kode_transaksi', $transaksi->kode_transaksi)->get();
         foreach($jumlah as $jml){
             $jml_produk = $jml->produk_id;
 

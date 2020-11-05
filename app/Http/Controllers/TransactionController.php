@@ -32,4 +32,13 @@ class TransactionController extends Controller
    	$transaksi->save();
    	return redirect()->back();
    }
+
+   public function laporan_terkirim(Request $request){
+      $cari = $request->cari;
+      $tahun = $request->cari;
+      $bulan = $request->cari;
+      $notif = Transaction_Detail::where('status', 2)->first();
+      $transaksi = Transaction_Detail::where('status', 3)->where('updated_at', $bulan )->orderBy('updated_at', 'DESC')->get();
+      return view('admin.laporan_barang_terjual', compact('transaksi', 'notif'));
+   }
 }
