@@ -14,7 +14,7 @@ class LaporanController extends Controller
 	{ 
    		$cari = $request->cari;
 	   	$notif = Transaction_Detail::where('status', 2)->first();
-		$transaksi = Transaction_Detail::with('user')->where('status', 3)->where('kode_transaksi','like',"%".$cari."%")->orderBy('updated_at', 'DESC')->paginate(10);
+		$transaksi = Transaction_Detail::where('status', 3)->where('kode_transaksi','like',"%".$cari."%")->orderBy('updated_at', 'DESC')->paginate(10);
 		$t = DB::table('transaction__details')
 				    ->join('users', 'users.id', '=', 'transaction__details.user_id')
 				    ->select('transaction__details.*', 'users.*')

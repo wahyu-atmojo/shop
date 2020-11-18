@@ -141,6 +141,7 @@ class CheckoutController extends Controller
     	$transaksi = Transaction_Detail::find($id);
     	$transaksi->bukti_transfer = $foto;
     	$transaksi->status = 2;
+        // dd($transaksi);
         // $transaksi->trans->id_transaction_detail = $id;
         // dd($id);
     	$transaksi->save();

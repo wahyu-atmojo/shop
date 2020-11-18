@@ -34,8 +34,8 @@
           @foreach($transaksi as $i)
           <tr>
             <th>{{ $no++ }}</th>
-            <th>{{ $i->user['name'] }}</th>
-            <th>{{ $i->user['alamat'] }}</th>
+            <th>{{ $i->user_transaction['name'] }}</th>
+            <th>{{ $i->user_transaction['alamat'] }}</th>
             <th>{{ $i->kode_transaksi }}</th>
             <th>{{ $i->no_resi }}</th>
             <th>{{ $i->updated_at }}</th>

@@ -256,11 +256,13 @@
 						                <span>Detail</span>
 						          	</a>
 						        </div>
+
+						        {{-- {{dd($transaksi->user_transaction)}} --}}
 						        <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
 					            	<div class="payment-body">Nama : {{$transaksi->user_transaction['name']}}</div>
 					            	<div class="payment-body">Detail Alamat : {{$transaksi->user_transaction['alamat']}} </div>
 					            	<div class="payment-body">Kota : {{$transaksi->user_transaction->kotas['nama']}} </div>
-					            	{{-- <div class="payment-body">Item : {{$produk->keterangan_produk }} </div> --}}
+					            	{{-- <div class="payment-body">Item : {{$produk->keteranrgan_poduk }} </div> --}}
 					            	
 						        </div>
 						    </div>
